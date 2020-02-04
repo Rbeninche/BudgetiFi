@@ -22,6 +22,9 @@ namespace BudgetiFi.Areas.Customer.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private string _userId;
 
+        [TempData]
+        public string StatusMessage { get; set; }
+
         public DebtCategoriesController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
@@ -77,12 +80,31 @@ namespace BudgetiFi.Areas.Customer.Controllers
             TryValidateModel(debtCategory);
             if (ModelState.IsValid)
             {
-               
 
-                _context.Add(debtCategory);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //Checks if the debt type has already been added by user
+                var checksIfCategoryExists = _context.DebtCategories.FirstOrDefault(c => c.Name == debtCategory.Name);
+
+                var exits = _context.DebtCategories.Where(e => e.Name.ToLower().Contains(debtCategory.Name.ToLower()));
+
+
+                if (checksIfCategoryExists != null || exits.Count() > 0)
+                {
+                    //Error
+                    StatusMessage = "Error : Category exists under " + checksIfCategoryExists.Name + " category. Please use another name.";
+                }
+                else
+                {
+                    _context.Add(debtCategory);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+
+                }
+
+
+              
             }
+
+            ViewBag.StatusMessage = StatusMessage;
             //ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", debtCategory.UserId);
             return View(debtCategory);
         }
