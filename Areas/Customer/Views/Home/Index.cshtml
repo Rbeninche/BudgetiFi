@@ -2,7 +2,80 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+<!--<div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+</div> -->
+<!--Home Section-->
+
+<section class="py-5" id="banner">
+    <div class="container">
+        <div class="row align-items-center viewport-80">
+            <div class="col-10 mx-auto text-center">
+                <h1 class="display-2 text-uppercase text-white banner-title">Budgetify</h1>
+                <h2 class="text-muted text-capitalized">Never spend your money before you have earned it.</h2>
+                <a class="btn banner-link m-3" asp-area="Identity" asp-page="/Account/Register">Start Now</a>
+                <a href="#" class="btn banner-link m-3">Learn More</a>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--	 banner icons-->
+<section id="banner-icons">
+    <div class="row">
+        <div class="col">
+            <ul class="d-flex justify-content-center">
+                <li class="text-center">
+                    <a href="#">
+                        <i class="fas fa-list fa-3x"></i>
+                        <p class="mb-0">Budget Planning</p>
+                    </a>
+                </li>
+
+                <li class="text-center">
+                    <a href="#">
+                        <i class="fas fa-credit-card fa-3x"></i>
+                        <p class="mb-0">Debt Management</p>
+                    </a>
+                </li>
+
+                <li class="text-center">
+                    <a href="#">
+                        <i class="fas fa-chart-line fa-3x"></i>
+                        <p class="mb-0">Investment</p>
+                    </a>
+                </li>
+                <li class="text-center">
+                    <a href="#">
+                        <i class="fas fa-book-reader fa-3x"></i>
+                        <p class="mb-0">Education</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!--end of banner icons-->
+<section id="info" class="py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 align-self-center">
+                <h3 class="text-uppercase">About Budgetify</h3>
+                <p>
+                    Our mission is to teach you how to meet life goals by firstly getting out of debt,
+                    investing your money in what matters for you, and helping you retire in peace.
+                </p>
+                <a class="btn btn-outline-success btn-lg" asp-area="Identity" asp-page="/Account/Register">Learn More</a>
+            </div>
+            <div class="col-md-6">
+                <img src="~/images/build-wealth.png" alt="" class="img-fluid" />
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--####################end of customers-->
