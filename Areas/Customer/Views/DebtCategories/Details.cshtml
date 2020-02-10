@@ -3,25 +3,45 @@
 @{
     ViewData["Title"] = "Details";
 }
-    <div class="container pTop">
 
-        <h1>Details</h1>
+<div class="container pTop">
 
-        <div>
-            <h4>DebtCategory</h4>
-            <hr />
-            <dl class="row">
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Name)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Name)
-                </dd>
 
-            </dl>
-        </div>
-        <div>
-            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-            <a asp-action="Index">Back to List</a>
+    <h3>Details</h3>
+    <div>
+        <hr />
+
+        <div class="col-md-7">
+            <form asp-action="Details" class="row-form">
+              
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <div class="col-auto">
+                        <label asp-for="Name" class="col-form-label font-weight-bold"></label>
+                    </div>
+                    <div class="col-auto">
+                        <input asp-for="Name" readonly class="form-control" />
+                    </div>
+                   
+                </div>
+
+                <partial name="_DetailsAndBackButton" model="Model.Id" />
+
+            </form>
         </div>
     </div>
+
+</div>
+
+@section Scripts {
+
+    <script>
+        $(document).ready(function () {
+            $('#footer').empty();
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+

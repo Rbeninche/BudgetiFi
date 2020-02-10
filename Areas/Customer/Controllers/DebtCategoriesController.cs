@@ -48,7 +48,7 @@ namespace BudgetiFi.Areas.Customer.Controllers
                 return NotFound();
             }
 
-            var userid = _userManager.GetUserId(HttpContext.User);
+           
 
             var debtCategory = await _context.DebtCategories.FirstOrDefaultAsync(x => x.Id == id && x.UserId == _userId);
             if (debtCategory == null)
@@ -82,9 +82,9 @@ namespace BudgetiFi.Areas.Customer.Controllers
             {
 
                 //Checks if the debt type has already been added by user
-                var checksIfCategoryExists = _context.DebtCategories.FirstOrDefault(c => c.Name == debtCategory.Name);
+                var checksIfCategoryExists = _context.DebtCategories.FirstOrDefault(c => c.Name == debtCategory.Name && c.UserId == _userId);
 
-                var exits = _context.DebtCategories.Where(e => e.Name.ToLower().Contains(debtCategory.Name.ToLower()));
+                var exits = _context.DebtCategories.Where(c => c.Name.ToLower().Contains(debtCategory.Name.ToLower()) && c.UserId == _userId);
 
 
                 if (checksIfCategoryExists != null || exits.Count() > 0)
