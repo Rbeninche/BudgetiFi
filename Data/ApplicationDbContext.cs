@@ -11,6 +11,7 @@ namespace BudgetiFi.Data
     {
 
         public DbSet<DebtCategory> DebtCategories { get; set; }
+        public DbSet<CreditorCategory> CreditorCategories { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
