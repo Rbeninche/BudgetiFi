@@ -1,0 +1,50 @@
+﻿@model BudgetiFi.Models.CreditorCategory
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+    <div class="container pTop">
+
+        <br />
+        <h2 class="text-info">Creditor Details</h2>
+        <br />
+        <div class="col-md-7">
+            <fieldset disabled>
+                <div class="form-group">
+                    <div class="col-auto">
+                        <label asp-for="Name" class="custom-label"></label>
+                    </div>
+                    <div class="col-auto">
+                        <input asp-for="Name" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-auto">
+                        <label asp-for="DebtCategory.Name" class="custom-label"></label>
+                    </div>
+                    <div class="col-auto">
+                        <input asp-for="DebtCategory.Name" class="form-control" />
+                    </div>
+                </div>
+            </fieldset>
+            <br />
+           
+                    <partial name="_DetailsAndBackButton" model="Model.Id" />
+               
+        </div>
+
+    </div>
+
+
+@section Scripts {
+
+    <script>
+        $(document).ready(function () {
+            $('#footer').empty();
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

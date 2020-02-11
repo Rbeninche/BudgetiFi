@@ -1,4 +1,4 @@
-﻿@model BudgetiFi.Models.DebtCategory
+﻿@model BudgetiFi.Models.CreditorCategory
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,32 +6,49 @@
 
 <div class="container pTop">
 
+    <h3>Edit Creditor Category</h3>
 
-    <h3>Edit Type of Debt</h3>
     <div>
         <hr />
-
         <div class="col-md-7">
             <form asp-action="Edit" class="row-form">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Id" />
                 <div class="form-group">
                     <div class="col-auto">
-                        <label asp-for="Name" class="col-form-label font-weight-bold"></label>
+                        <label asp-for="Name" class="control-label"></label>
+
                     </div>
                     <div class="col-auto">
                         <input asp-for="Name" class="form-control" />
+
                     </div>
+
+
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
+                <div class="form-group">
+                    <div class="col-auto">
+                        <label asp-for="DebtCategoryId" class="control-label"></label>
 
+                    </div>
+                    <div class="col-auto">
+                        <select asp-for="DebtCategoryId" class="form-control" asp-items="ViewBag.DebtCategoryId"></select>
+
+                    </div>
+
+
+                    <span asp-validation-for="DebtCategoryId" class="text-danger"></span>
+                </div>
                 <partial name="_EditAndBackButton" model="Model.Id" />
+
 
             </form>
         </div>
     </div>
 
 </div>
+
 
 @section Scripts {
 
@@ -42,6 +59,5 @@
     </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-
 
 

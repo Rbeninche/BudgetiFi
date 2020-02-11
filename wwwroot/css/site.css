@@ -249,7 +249,7 @@ for details on configuring this project to bundle and minify static web assets. 
 
     .content {
         background: white;
-        width: 50%;
+        width: 70%;
         padding: 40px;
         margin: 100px auto;
         border-radius: 10px;
@@ -269,6 +269,25 @@ for details on configuring this project to bundle and minify static web assets. 
 
     }
 
+blockquote {
+    margin: 0;
+}
+
+    blockquote p {
+        padding: 15px;
+        background: #eee;
+        border-radius: 5px;
+    }
+
+        blockquote p::before {
+            content: '\201C';
+        }
+
+        blockquote p::after {
+            content: '\201D';
+        }
+
+
 
    
 
@@ -276,7 +295,7 @@ for details on configuring this project to bundle and minify static web assets. 
 /*##################################footer##############*/
 
 #footer {
-    background-color: #fff;
+    background-color: #242a33;
 }
 
     #footer .fa {
@@ -287,7 +306,8 @@ for details on configuring this project to bundle and minify static web assets. 
     }
 
     #footer p {
-        color: #2D3142;
+        color: #f5f3f5;
+        font-size: 20px;
     }
 
 
