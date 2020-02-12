@@ -82,12 +82,13 @@ namespace BudgetiFi.Areas.Customer.Controllers
             {
 
                 //Checks if the debt type has already been added by user
-                var checksIfCategoryExists = _context.DebtCategories.FirstOrDefault(c => c.Name == debtCategory.Name && c.UserId == _userId);
+                var checksIfCategoryExists = _context.DebtCategories.FirstOrDefault(c => c.Name == debtCategory.Name 
+                && c.UserId == _userId && c.Name.ToLower().Contains(debtCategory.Name.ToLower()));
 
-                var exits = _context.DebtCategories.Where(c => c.Name.ToLower().Contains(debtCategory.Name.ToLower()) && c.UserId == _userId);
+             
 
 
-                if (checksIfCategoryExists != null || exits.Count() > 0)
+                if (checksIfCategoryExists != null)
                 {
                     //Error
                     StatusMessage = "Error : Category exists under " + checksIfCategoryExists.Name + " category. Please use another name.";
@@ -148,25 +149,39 @@ namespace BudgetiFi.Areas.Customer.Controllers
 
             if (ModelState.IsValid)
             {
-                try
+                //Checks if the debt type has already been added by user
+                var checksIfCategoryExists = _context.DebtCategories.FirstOrDefault(c => c.Name == debtCategory.Name
+                && c.UserId == _userId && c.Name.ToLower().Contains(debtCategory.Name.ToLower()));
+
+                if (checksIfCategoryExists != null)
                 {
-                    _context.Update(debtCategory);
-                    await _context.SaveChangesAsync();
+                    //Error
+                    StatusMessage = "Error : Category exists under " + checksIfCategoryExists.Name + " category. Please use another name.";
                 }
-                catch (DbUpdateConcurrencyException)
+                else
                 {
-                    if (!DebtCategoryExists(debtCategory.Id))
+                    try
                     {
-                        return NotFound();
+                        _context.Update(debtCategory);
+                        await _context.SaveChangesAsync();
                     }
-                    else
+                    catch (DbUpdateConcurrencyException)
                     {
-                        throw;
+                        if (!DebtCategoryExists(debtCategory.Id))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
                     }
+                    return RedirectToAction(nameof(Index));
+
                 }
-                return RedirectToAction(nameof(Index));
+                
             }
-            //ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", debtCategory.UserId);
+            ViewBag.StatusMessage = StatusMessage;
             return View(debtCategory);
         }
 

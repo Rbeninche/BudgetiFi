@@ -10,6 +10,7 @@
 
     <div>
         <hr />
+        <partial name="_StatusMessage" model=@ViewBag.StatusMessage />
         <div class="col-md-7">
             <form asp-action="Edit" class="row-form">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>

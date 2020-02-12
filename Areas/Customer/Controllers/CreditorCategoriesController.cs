@@ -57,20 +57,20 @@ namespace BudgetiFi.Areas.Customer.Controllers
             TryValidateModel(creditorCategory);
             if (ModelState.IsValid)
             {
+               
+
                 //Checks if the debt type has already been added by user
                 var checksIfCreditorExists = _context.CreditorCategories.Include(c => c.DebtCategory)
-                    .FirstOrDefault(c => c.Name == creditorCategory.Name
-                && c.DebtCategory.Id == creditorCategory.DebtCategoryId
-                && c.UserId == _userId);
+                    .Where(s => s.Name == creditorCategory.Name && s.DebtCategory.Id == creditorCategory.DebtCategoryId
+                    && s.UserId == _userId && s.Name.ToLower().Contains(creditorCategory.Name.ToLower()));
 
-                var checkIfNameExits = _context.CreditorCategories.Where(c => c.Name.ToLower()
-                .Contains(creditorCategory.Name.ToLower()) && c.UserId == _userId);
+             
 
 
-                if (checksIfCreditorExists != null || checkIfNameExits.Count() > 0)
+                if (checksIfCreditorExists.Count()>0)
                 {
                     //Error
-                    StatusMessage = "Error : Creditor exists under " + checksIfCreditorExists.Name + " category. Please use another name.";
+                    StatusMessage = "Error : Creditor exists under " + checksIfCreditorExists.First().DebtCategory.Name + " category. Please use another name.";
                 }
                 else
                 {
@@ -82,7 +82,7 @@ namespace BudgetiFi.Areas.Customer.Controllers
 
 
             }
-            ViewData["DebtCategoryId"] = new SelectList(_context.DebtCategories, "Id", "Name", creditorCategory.DebtCategoryId);
+            ViewData["DebtCategoryId"] = new SelectList(_context.DebtCategories.Where(c => c.UserId == _userId), "Id", "Name");
             ViewBag.StatusMessage = StatusMessage;
             return View(creditorCategory);
         }
@@ -149,27 +149,44 @@ namespace BudgetiFi.Areas.Customer.Controllers
 
             if (ModelState.IsValid)
             {
-                try
+                
+
+                //Checks if the debt type has already been added by user
+                var checksIfCreditorExists = _context.CreditorCategories.Include(c => c.DebtCategory)
+                    .Where(s => s.Name == creditorCategory.Name && s.DebtCategory.Id == creditorCategory.DebtCategoryId
+                    && s.UserId == _userId && s.Name.ToLower().Contains(creditorCategory.Name.ToLower()));
+                if (checksIfCreditorExists.Count() > 0)
                 {
-                    _context.Update(creditorCategory);
-                    await _context.SaveChangesAsync();
+                    //Error
+                    StatusMessage = "Error : Creditor exists under " + checksIfCreditorExists.First().DebtCategory.Name + " category. Please use another name.";
                 }
-                catch (DbUpdateConcurrencyException)
+                else
                 {
-                    if (!CreditorCategoryExists(creditorCategory.Id))
+                    try
                     {
-                        return NotFound();
+                        _context.Update(creditorCategory);
+                        await _context.SaveChangesAsync();
                     }
-                    else
+                    catch (DbUpdateConcurrencyException)
                     {
-                        throw;
+                        if (!CreditorCategoryExists(creditorCategory.Id))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
                     }
+                    return RedirectToAction(nameof(Index));
+
                 }
-                return RedirectToAction(nameof(Index));
+               
             }
             ViewData["DebtCategoryId"] = new SelectList(_context.DebtCategories
               .Where(c => c.UserId == _userId),
               "Id", "Name", creditorCategory.DebtCategoryId);
+            ViewBag.StatusMessage = StatusMessage;
 
             return View(creditorCategory);
         }
