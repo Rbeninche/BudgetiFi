@@ -7,14 +7,25 @@
     <title>@ViewData["Title"] - BudgetiFi</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
 </head>
 <body>
 
     <nav class="navbar navbar-expand-md fixed-top">
+        @if (User.IsInRole(StaticData.RegularUser))
+        {
+            <a class="navbar-brand" asp-area="Customer" asp-controller="DebtDetails" asp-action="Profile">BudgetiFi</a>
 
-        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BudgetiFi</a>
+        }
+        else
+        {
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BudgetiFi</a>
+
+        }
+
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,9 +38,10 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Manage Here!
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropDownMenuLink">
-                            <a class="dropdown-item" asp-action="Index" asp-controller="DebtCategories" asp-area="Customer">Debt Category</a>
-                            <a class="dropdown-item" asp-action="Index" asp-controller="CreditorCategories" asp-area="Customer">Creditors</a>
+                        <div class="dropdown-menu dropdown-bg" aria-labelledby="navbarDropDownMenuLink">
+                            <a class="dropdown-item text-success font-weight-bold" asp-action="Index" asp-controller="DebtCategories" asp-area="Customer">Debt Category</a>
+                            <a class="dropdown-item text-success font-weight-bold" asp-action="Index" asp-controller="CreditorCategories" asp-area="Customer">Creditors</a>
+                            <a class="dropdown-item text-success font-weight-bold" asp-action="Index" asp-controller="DebtDetails" asp-area="Customer">Debt Details</a>
 
 
                         </div>
@@ -53,11 +65,24 @@
 
                 }
 
+                @if (User.IsInRole(StaticData.RegularUser))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Customer" asp-controller="DebtDetails" asp-action="Profile">OverView</a>
+                    </li>
+
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+
+                }
 
 
-                <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                </li>
+
+
 
             </ul>
             <partial name="_LoginPartial" />
@@ -73,41 +98,7 @@
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
-    <!--#####################footer################-->
-    <section id="footer">
-        <div class="container ">
-            <div class="row align-items-center ">
-                <div class="col-md-6 my-5 ">
-                    <div class="flex d-flex ">
-                        <i class="fa fa-check mr-4 align-self-start "></i>
-                        <p>
-                            We will teach you the basics of money management: budgeting, saving, debt, investing, and giving.
-                        </p>
-                    </div>
-                    <div class="flex d-flex ">
-                        <i class="fa fa-check mr-4 align-self-start "></i>
-                        <p>
-                            We will help you build strong money habits early on and avoid many of the mistakes that lead to lifelong money struggles
-                        </p>
-                    </div>
-                    <div class="flex d-flex ">
-                        <i class="fa fa-check mr-4 align-self-start "></i>
-                        <p>
-                            We will help you stay out of debt, invest for retirement, and save for your child's collge fund.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-6 ">
-                    <div class="embed-responsive embed-responsive-4by3 ">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28614.255950392635!2d-80.13990403654509!3d26.301166460167483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d8e2903d4afb6f%3A0xe5982b2abf356617!2sDeerfield%20Beach%2C%20FL!5e0!3m2!1sen!2sus!4v1579924750373!5m2!1sen!2sus" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
- 
-
+    
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

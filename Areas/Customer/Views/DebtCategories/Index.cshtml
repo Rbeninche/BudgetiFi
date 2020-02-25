@@ -12,7 +12,7 @@
 
     <div class="row mb-2">
         <div class="col-6">
-            <h2 class="text-success">Here's a lis of your debt category</h2>
+            <h2 class="text-success">Here's a list of your debt category</h2>
         </div>
         
         <div class="col-6 text-right">
@@ -27,7 +27,7 @@
     @if (Model.Count() > 0)
     {
         <table class="table">
-            <thead>
+            <thead class="text-head">
                 <tr>
                     <th>
                         @Html.DisplayNameFor(model => model.Name)
@@ -36,7 +36,7 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-column">
                 @foreach (var item in Model)
                 {
                     <tr>
@@ -70,7 +70,8 @@
 
     <script>
         $(document).ready(function () {
-            $('#footer').empty();
+          
+             $('body').css("background-color", "#393945")
         });
     </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

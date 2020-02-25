@@ -4,7 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
-    <div class="container pTop">
+    <div class="container pTop content">
 
         <br />
         <h2 class="text-info">Creditor Details</h2>
@@ -39,11 +39,7 @@
 
 @section Scripts {
 
-    <script>
-        $(document).ready(function () {
-            $('#footer').empty();
-        });
-    </script>
+   
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 

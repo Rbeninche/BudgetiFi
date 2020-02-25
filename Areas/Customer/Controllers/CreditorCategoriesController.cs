@@ -70,7 +70,8 @@ namespace BudgetiFi.Areas.Customer.Controllers
                 if (checksIfCreditorExists.Count()>0)
                 {
                     //Error
-                    StatusMessage = "Error : Creditor exists under " + checksIfCreditorExists.First().DebtCategory.Name + " category. Please use another name.";
+                    StatusMessage = "Error : Creditor exists under " + checksIfCreditorExists.First().DebtCategory.Name 
+                        + " category. Please use another name.";
                 }
                 else
                 {
@@ -222,6 +223,17 @@ namespace BudgetiFi.Areas.Customer.Controllers
             _context.CreditorCategories.Remove(creditorCategory);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        [ActionName("GetCreditorCategory")]
+        public async Task<IActionResult> GetCreditorCategory(int id)
+        {
+            List<CreditorCategory> creditorCategories = new List<CreditorCategory>();
+
+            creditorCategories = await (from CreditorCategory in _context.CreditorCategories
+                                   where CreditorCategory.DebtCategoryId == id
+                                   select CreditorCategory).ToListAsync();
+            return Json(new SelectList(creditorCategories, "Id", "Name"));
         }
 
         private bool CreditorCategoryExists(int id)

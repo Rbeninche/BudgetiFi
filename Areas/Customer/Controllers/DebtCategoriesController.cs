@@ -62,7 +62,7 @@ namespace BudgetiFi.Areas.Customer.Controllers
         // GET: Customer/DebtCategories/Create
         public IActionResult Create()
         {
-            _userId = GetCurrentUserId();
+            
             return View();
         }
 

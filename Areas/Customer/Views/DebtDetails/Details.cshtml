@@ -1,0 +1,84 @@
+﻿@model BudgetiFi.Models.DebtDetail
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container pTop content">
+    <br />
+
+        <h2 class="text-info">Debt Details</h2>
+        <br />
+        <div class="col-md-7">
+            <fieldset disabled>
+                <div class="form-group">
+                    <div class="col-auto">
+                        <label asp-for="Name" class="custom-label"></label>
+                    </div>
+                    <div class="col-auto">
+                        <input asp-for="Name" class="form-control" />
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <div class="col-auto">
+                        <label asp-for="PaymentDate" class="custom-label"></label>
+                    </div>
+                    <div class="col-auto">
+                        <input asp-for="PaymentDate" class="form-control" />
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <div class="col-auto">
+                        <label asp-for="CreditLimit" class="custom-label"></label>
+                    </div>
+                    <div class="col-auto">
+                        <input asp-for="CreditLimit" class="form-control" />
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <div class="col-auto">
+                        <label asp-for="Balance" class="custom-label"></label>
+                    </div>
+                    <div class="col-auto">
+                        <input asp-for="Balance" class="form-control" />
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <div class="col-auto">
+                        <label asp-for="MinimumPayment" class="custom-label"></label>
+                    </div>
+                    <div class="col-auto">
+                        <input asp-for="MinimumPayment" class="form-control" />
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <div class="col-auto">
+                        <label asp-for="DebtCategory.Name" class="custom-label"></label>
+                    </div>
+                    <div class="col-auto">
+                        <input asp-for="DebtCategory.Name" class="form-control" />
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <div class="col-auto">
+                        <label asp-for="CreditorCategory.Name" class="custom-label"></label>
+                    </div>
+                    <div class="col-auto">
+                        <input asp-for="CreditorCategory.Name" class="form-control" />
+                    </div>
+
+                </div>
+            </fieldset>
+            <br />
+
+            <partial name="_DetailsAndBackButton" model="Model.Id" />
+        </div>
+</div>
+
+        

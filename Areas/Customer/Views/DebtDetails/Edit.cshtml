@@ -1,0 +1,123 @@
+﻿@model BudgetiFi.Models.DebtDetail
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container pTop content">
+    <h3>Edit your debt details here</h3>
+    <div>
+        <hr />
+        <partial name="_StatusMessage" model=@ViewBag.StatusMessage />
+        <div class="col-md-7">
+            <form asp-action="Edit" class="row-form">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <div class="col-auto">
+                        <label asp-for="Name" class="col-form-label font-weight-bold"></label>
+                    </div>
+                    <div class="col-auto">
+                        <input asp-for="Name" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="col-auto">
+                        <label asp-for="PaymentDate" class="col-form-label font-weight-bold"></label>
+                    </div>
+                    <div class="col-auto">
+                        <input asp-for="PaymentDate" class="form-control" />
+                    </div>
+                    <span asp-validation-for="PaymentDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="col-auto">
+                        <label asp-for="CreditLimit" class="col-form-label font-weight-bold"></label>
+                    </div>
+                    <div class="col-auto">
+                        <input asp-for="CreditLimit" class="form-control" />
+                    </div>
+                    <span asp-validation-for="CreditLimit" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="col-auto">
+                        <label asp-for="Balance" class="col-form-label font-weight-bold"></label>
+                    </div>
+                    <div class="col-auto">
+                        <input asp-for="Balance" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Balance" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="col-auto">
+                        <label asp-for="MinimumPayment" class="col-form-label font-weight-bold"></label>
+                    </div>
+                    <div class="col-auto">
+                        <input asp-for="MinimumPayment" class="form-control" />
+                    </div>
+                    <span asp-validation-for="MinimumPayment" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="col-auto">
+                        <label asp-for="DebtCategoryId" class="col-form-label font-weight-bold"></label>
+                    </div>
+                    <div class="col-auto">
+                        <select asp-for="DebtCategoryId" id="debtCategoryId" class="form-control" asp-items="ViewBag.DebtCategoryId"></select>
+                    </div>
+                    <span asp-validation-for="DebtCategoryId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="col-auto">
+                        <label asp-for="CreditorCategoryId" class="col-form-label font-weight-bold"></label>
+                    </div>
+                    <div class="col-auto">
+                        <select asp-for="CreditorCategoryId" name="CreditorCategoryId" id="CreditorCategoryId" class="form-control" asp-items="ViewBag.CreditorCategoryId"></select>
+                    </div>
+                    <span asp-validation-for="CreditorCategoryId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="col-auto">
+                        <label asp-for="Ignore" class="control-label"></label>
+                    </div>
+                    <div class="col-auto">
+                        <input asp-for="Ignore" class="form-control" />
+                    </div>
+
+
+                    <span asp-validation-for="Ignore" class="text-danger"></span>
+                </div>
+                <partial name="_EditAndBackButton" model="Model.Id" />
+            </form>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            getCreditorCategory();
+            $('#debtCategoryId').change(function () {
+                getCreditorCategory();
+            });
+        });
+        function getCreditorCategory() {
+            var url = '@Url.Content("~/")' + "Customer/CreditorCategories/GetCreditorCategory";
+            var ddlsoruce = '#debtCategoryId';
+            $.getJSON(url, { id: $(ddlsoruce).val() }, function (data) {
+                var items = '';
+                $('#CreditorCategoryId').empty();
+                $.each(data, function (i, creditorcategory) {
+                    items += "<option value='" + creditorcategory.value + "'>" + creditorcategory.text + "</option>";
+                });
+                $('#CreditorCategoryId').html(items);
+            })
+        }
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
