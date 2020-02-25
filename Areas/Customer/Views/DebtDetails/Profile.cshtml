@@ -4,75 +4,76 @@
     ViewData["Title"] = "Profile";
 }
 
-<h1>Profile</h1>
-<div class="container pTop content">
-    <div class="stats">
+
+    <div class="container pTop content">
+        <div class="stats2">
 
 
-        <div class="row">
-            <div class="col-xs-6 text-right">
-                <h4 class="debtDetail-text">Total Debt:</h4>
+            <div class="row">
+                <div class="col-xs-6 text-right">
+                    <h4 class="debtDetail-text">Total Debt:</h4>
+                </div>
+                <div class="col-xs-6 text-left">
+                    <kbd class="h4 count">&nbsp;@ViewBag.TotalDebt.ToString("C")</kbd>
+                </div>
+
+
+
             </div>
-            <div class="col-xs-6 text-left">
-                <kbd class="h4 count">&nbsp;@ViewBag.TotalDebt.ToString("C")</kbd>
-            </div>
-
-
-
         </div>
+       
+
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+
+                    <th scope="col">Type Of Debt</th>
+
+                    <th scope="col">Total</th>
+                    <th scope="col">Total Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <td>Credit Card</td>
+                    <td>@ViewBag.NumberOfCreditCard</td>
+                    <td>@ViewBag.TotalCreditCard.ToString("C")</td>
+                </tr>
+                <tr>
+
+                    <td>Student Loan</td>
+                    <td>@ViewBag.NumberOfStudentLoan</td>
+                    <td>@ViewBag.TotalOfStudentLoan.ToString("C")</td>
+                </tr>
+                <tr>
+
+                    <td>Mortgage</td>
+                    <td>@ViewBag.NumberOfMortgage</td>
+                    <td>@ViewBag.TotalMortgage.ToString("C")</td>
+                </tr>
+                <tr>
+
+                    <td>Auto Loan</td>
+                    <td>@ViewBag.NumberOfAutoLoan</td>
+                    <td>@ViewBag.TotalAutoLoan.ToString("C")</td>
+                </tr>
+                <tr>
+
+                    <td>Other Loan</td>
+                    <td>@ViewBag.NumberOfOtherLoan</td>
+                    <td>@ViewBag.TotalOtherLoan.ToString("C")</td>
+                </tr>
+                <tr>
+
+                    <td>Medical Bills</td>
+                    <td>@ViewBag.NumberOfMedicalBills</td>
+                    <td>@ViewBag.TotalMedicalBills.ToString("C")</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
     </div>
-
-
-    <table class="table table-striped">
-        <thead>
-            <tr>
-
-                <th scope="col">Type Of Debt</th>
-            
-                <th scope="col">Total</th>
-                <th scope="col">Total Balance</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-
-                <td>Credit Card</td>
-                <td>@ViewBag.NumberOfCreditCard</td>
-                <td>@ViewBag.TotalCreditCard.ToString("C")</td>
-            </tr>
-            <tr>
-
-                <td>Student Loan</td>
-                <td>@ViewBag.NumberOfStudentLoan</td>
-                <td>@ViewBag.TotalOfStudentLoan.ToString("C")</td>
-            </tr>
-            <tr>
-
-                <td>Mortgage</td>
-                <td>@ViewBag.NumberOfMortgage</td>
-                <td>@ViewBag.TotalMortgage.ToString("C")</td>
-            </tr>
-            <tr>
-
-                <td>Auto Loan</td>
-                <td>@ViewBag.NumberOfAutoLoan</td>
-                <td>@ViewBag.TotalAutoLoan.ToString("C")</td>
-            </tr>
-            <tr>
-
-                <td>Other Loan</td>
-                <td>@ViewBag.NumberOfOtherLoan</td>
-                <td>@ViewBag.TotalOtherLoan.ToString("C")</td>
-            </tr>
-            <tr>
-
-                <td>Medical Bills</td>
-                <td>@ViewBag.NumberOfMedicalBills</td>
-                <td>@ViewBag.TotalMedicalBills.ToString("C")</td>
-            </tr>
-        </tbody>
-    </table>
-
-
-
-</div>

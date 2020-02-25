@@ -39,8 +39,11 @@ namespace BudgetiFi
             services.AddScoped<IDbInitializer, DbInitializer>();
 
             services.AddSingleton<IEmailSender, EmailSender>();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
             services.AddControllersWithViews();
             services.AddRazorPages();
+          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,9 +65,10 @@ namespace BudgetiFi
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
@@ -73,6 +77,7 @@ namespace BudgetiFi
                     pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
         }
     }
 }

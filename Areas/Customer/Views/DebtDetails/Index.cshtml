@@ -7,6 +7,15 @@
 <div class=" debtdetail-bg">
     <div class="container pTop">
 
+       
+            <form asp-action="Index" class="searchbox_1" method="get">
+                <input type="search" name="SearchString" class="search_1" placeholder="Search" value="@ViewData["CurrentFilter"]" />
+                <button type="submit" class="submit_1" value="Search">&nbsp;</button>
+
+            </form>
+
+
+
         <div class="stats">
             <div class="row">
 
@@ -52,16 +61,7 @@
 
             </div>
         </div>
-        @if (Model.Count() > 0)
-        {
-            <form asp-action="Index" class="searchbox_1" method="get">
-                <input type="search" name="SearchString" class="search_1" placeholder="Search" value="@ViewData["CurrentFilter"]" />
-                <button type="submit" class="submit_1" value="Search">&nbsp;</button>
 
-            </form>
-
-
-        }
 
 
         <div class="row mb-2">
@@ -146,10 +146,10 @@
                     }
                 </tbody>
             </table>
-            
-                var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-                var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-            
+
+            var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+            var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+
 
             <a asp-action="Index"
                asp-route-sortOrder="@ViewData["CurrentSort"]"

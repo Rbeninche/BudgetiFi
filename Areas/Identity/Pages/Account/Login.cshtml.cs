@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 
 namespace BudgetiFi.Areas.Identity.Pages.Account
 {
@@ -86,6 +87,7 @@ namespace BudgetiFi.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    HttpContext.Session.SetString("Username", _logger.ToString());
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

@@ -75,7 +75,7 @@ namespace BudgetiFi.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
+            returnUrl = returnUrl ?? Url.Content("~/Customer/DebtDetails/Profile");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
@@ -92,9 +92,9 @@ namespace BudgetiFi.Areas.Identity.Pages.Account
                     {
                         await _roleManager.CreateAsync(new IdentityRole(StaticData.RegularUser));
                     }
-                    if (!await _roleManager.RoleExistsAsync(StaticData.RegularUser))
+                    if (!await _roleManager.RoleExistsAsync(StaticData.AdminUser))
                     {
-                        await _roleManager.CreateAsync(new IdentityRole(StaticData.RegularUser));
+                        await _roleManager.CreateAsync(new IdentityRole(StaticData.AdminUser));
                     }
 
                     await _userManager.AddToRoleAsync(user, StaticData.RegularUser);

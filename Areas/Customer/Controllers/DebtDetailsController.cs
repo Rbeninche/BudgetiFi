@@ -9,6 +9,7 @@ using BudgetiFi.Data;
 using BudgetiFi.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
 
 namespace BudgetiFi.Areas.Customer.Controllers
 {
@@ -117,6 +118,11 @@ namespace BudgetiFi.Areas.Customer.Controllers
             ViewBag.TotalMedicalBills = totalMedicalBills;
             ViewBag.TotalDebt = totalDebt;
 
+            if(HttpContext.Session.GetString("Username") != null)
+            {
+
+            }
+            ViewBag.Username = HttpContext.Session.GetString("Username");
             return View();
         }
 
