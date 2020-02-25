@@ -1,0 +1,203 @@
+﻿@model PaginatedList<BudgetiFi.Models.DebtDetail>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class=" debtdetail-bg">
+    <div class="container pTop">
+
+        <div class="stats">
+            <div class="row">
+
+                <div class="col-xs-6">
+                    <h4 class="debtDetail-text">Monthly Payment:</h4>
+                </div>
+                <div class="col-xs-6">
+                    <kbd class="h4 count">&nbsp;@ViewBag.MonthlyPayment</kbd>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 text-right">
+                    <h4 class="debtDetail-text">Available Credit:</h4>
+                </div>
+                <div class="col-xs-6 text-left">
+                    <kbd class="h4 count">&nbsp;@ViewBag.CreditAvailable</kbd>
+
+                    @if (@ViewBag.PercentageAvailable > 0.30)
+                    {
+                        <kbd class="text-warning">@ViewBag.PercentageAvailable.ToString("P")</kbd>
+
+                    }
+                    else
+                    {
+                        <kbd class="text-danger">@ViewBag.PercentageAvailable.ToString("P")</kbd>
+                    }
+
+
+                </div>
+
+
+
+            </div>
+            <div class="row">
+                <div class="col-xs-6 text-right">
+                    <h4 class="debtDetail-text">Total Debt:</h4>
+                </div>
+                <div class="col-xs-6 text-left">
+                    <kbd class="h4 count">&nbsp;@ViewBag.TotalDebt</kbd>
+                </div>
+
+
+
+            </div>
+        </div>
+        @if (Model.Count() > 0)
+        {
+            <form asp-action="Index" class="searchbox_1" method="get">
+                <input type="search" name="SearchString" class="search_1" placeholder="Search" value="@ViewData["CurrentFilter"]" />
+                <button type="submit" class="submit_1" value="Search">&nbsp;</button>
+
+            </form>
+
+
+        }
+
+
+        <div class="row mb-2">
+            <div class="col-6">
+                <h2 class="text-success">Debt Details</h2>
+            </div>
+
+            <div class="col-6 text-right">
+                <partial name="_CreateButtonPartial" />
+            </div>
+        </div>
+        @if (Model.Count() > 0)
+        {
+            <table class="table">
+                <thead class="text-head">
+                    <tr>
+                        <th>
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]" style="text-decoration:none">
+                                Debt Name
+                            </a>
+
+                        </th>
+                        <th>
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]" style="text-decoration:none">
+                                Due Date
+                            </a>
+
+                        </th>
+                        <th>
+                            Credit Limit
+                        </th>
+                        <th>
+                            Balance
+                        </th>
+                        <th>
+                            Minimum Payment
+                        </th>
+                        <th>
+                            Type Of Debt
+                        </th>
+                        <th>
+                            Institution Name
+                        </th>
+                        <th>
+                            Avalaible Credit
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="text-column">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PaymentDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreditLimit)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Balance)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MinimumPayment)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DebtCategory.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreditorCategory.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AvailableCredit)
+                            </td>
+                            <td>
+                                <partial name="_tableButtonPartial" model="item.Id" />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            
+                var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+            
+
+            <a asp-action="Index"
+               asp-route-sortOrder="@ViewData["CurrentSort"]"
+               asp-route-pageNumber="@(Model.PageIndex - 1)"
+               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+               class="btn btn-danger @prevDisabled">
+                Previous
+            </a>
+            <a asp-action="Index"
+               asp-route-sortOrder="@ViewData["CurrentSort"]"
+               asp-route-pageNumber="@(Model.PageIndex + 1)"
+               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+               class="btn btn-danger @nextDisabled">
+                Next
+            </a>
+        }
+        else
+        {
+            <blockquote cite="https://www.daveramsey.com/blog/the-truth-about-debt">
+                <p>The rich rule over the poor, and the borrower is slave to the lender</p>
+
+            </blockquote>
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+
+   <script>
+   $('.count').each(function () {
+$(this).prop('Counter',0).animate({
+    Counter: $(this).text()
+}, {
+    duration: 4000,
+    easing: 'swing',
+    step: function (now) {
+now = Number(now).toLocaleString('en-US', {style:'currency', currency:'USD'});
+        $(this).text(now);
+    }
+   });
+});
+   </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+
+
+

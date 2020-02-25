@@ -1,0 +1,89 @@
+﻿@model BudgetiFi.Models.DebtDetail
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container pTop content">
+    <h3>Delete your debt details here</h3>
+    <div>
+        <hr />
+        <div class="col-md-7">
+            <form method="post">
+                <input type="hidden" asp-for="Id" />
+                <fieldset disabled>
+
+                    <div class="form-group">
+                        <div class="col-auto">
+                            <label asp-for="Name" class="col-form-label font-weight-bold"></label>
+                        </div>
+                        <div class="col-auto">
+                            <input asp-for="Name" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-auto">
+                            <label asp-for="PaymentDate" class="col-form-label font-weight-bold"></label>
+                        </div>
+                        <div class="col-auto">
+                            <input asp-for="PaymentDate" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-auto">
+                            <label asp-for="CreditLimit" class="col-form-label font-weight-bold"></label>
+                        </div>
+                        <div class="col-auto">
+                            <input asp-for="CreditLimit" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-auto">
+                            <label asp-for="Balance" class="col-form-label font-weight-bold"></label>
+                        </div>
+                        <div class="col-auto">
+                            <input asp-for="Balance" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-auto">
+                            <label asp-for="MinimumPayment" class="col-form-label font-weight-bold"></label>
+                        </div>
+                        <div class="col-auto">
+                            <input asp-for="MinimumPayment" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-auto">
+                            <label asp-for="DebtCategory.Name" class="custom-label"></label>
+                        </div>
+                        <div class="col-auto">
+                            <input asp-for="DebtCategory.Name" class="form-control" />
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-auto">
+                            <label asp-for="CreditorCategory.Name" class="custom-label"></label>
+                        </div>
+                        <div class="col-auto">
+                            <input asp-for="CreditorCategory.Name" class="form-control" />
+                        </div>
+
+                    </div>
+
+                </fieldset>
+                <partial name="_DeleteAndBackButton" model="Model.Id" />
+            </form>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+  
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

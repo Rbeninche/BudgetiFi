@@ -1,9 +1,18 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-/*body {
-    background-color: #f5f3f5;
-}*/
+body {
+    background-color: #393945;
+}
+
+.custom {
+    width: 78px !important;
+}
+
+
+
+
+
 
 
 
@@ -34,10 +43,15 @@ for details on configuring this project to bundle and minify static web assets. 
         margin: 0 10px;
     }
 
-        .navbar .nav-link:hover {
-            color: #f5f3f5;
-            background-color: #85bb65;
-        }
+.dropdown-bg {
+    background-color: #242a33;
+    
+}
+
+.navbar .nav-link:hover {
+    color: #f5f3f5;
+    background-color: #85bb65;
+}
 
 .pTop {
     padding-top: 6em;
@@ -246,15 +260,23 @@ for details on configuring this project to bundle and minify static web assets. 
     position: relative;
 }
 
+.bg-debtDetail {
+    background: url(/images/debtdetail.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 71px 0 65px 0;
+    position: relative;
+}
 
-    .content {
-        background: white;
-        width: 70%;
-        padding: 40px;
-        margin: 100px auto;
-        border-radius: 10px;
-       
-    }
+
+.content {
+    background: white;
+    width: 65%;
+    padding: 40px;
+    margin: 100px auto;
+    border-radius: 10px;
+}
 
 
      @media screen and (max-width: 991px)
@@ -286,14 +308,22 @@ blockquote {
         blockquote p::after {
             content: '\201D';
         }
+/*##################################Table##############*/
 
+tr:hover {
+    background-color: #40424f;
+    color: #4fc8af
+}
 
+.text-head {
+    color: #4fc8af;
+}
 
-   
-
+.text-column {
+    color: #9497aa;
+}
 
 /*##################################footer##############*/
-
 #footer {
     background-color: #242a33;
 }
@@ -309,6 +339,113 @@ blockquote {
         color: #f5f3f5;
         font-size: 20px;
     }
+
+
+.stats {
+    background-color: #4fc8af;
+    border-radius: 4px;
+    padding: 30px;
+    overflow: hidden;
+    margin-top: 40px;
+    margin-bottom: 40px
+}
+
+@media screen and (max-width: 767px) {
+    .stats {
+        margin-top: 10px;
+        margin-bottom: 30px
+    }
+}
+
+@media screen and (min-width: 501px) {
+    .stats-left, .stats-right {
+        float: left;
+        width: 50%
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .stats-left .stats-number {
+        margin-bottom: 20px
+    }
+}
+
+.stats-header {
+    margin: 0 0 30px 0 !important
+}
+
+.stats-number {
+    font-size: 54px;
+    font-family: "Secular One", Helvetica, Arial, sans-serif;
+    line-height: 1
+}
+
+@media screen and (max-width: 767px) {
+    .stats-number {
+        font-size: 36px
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .stats-number {
+        display: inline-block
+    }
+}
+
+
+/* search box*/
+.searchbox_1 {
+    background-color: #fffbf8;
+    padding: 13px;
+    width: 335px;
+   
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(72, 72, 72, 0.83), 0 10px 15px 0 rgba(126, 126, 126, 0.12), 0 -2px 6px 1px rgba(199, 199, 199, 0.55) inset, 0 2px 4px 2px rgba(255, 255, 255, 0.83) inset;
+    -moz-box-shadow: 0 2px 4px 0 rgba(72, 72, 72, 0.83), 0 10px 15px 0 rgba(126, 126, 126, 0.12), 0 -2px 6px 1px rgba(199, 199, 199, 0.55) inset, 0 2px 4px 2px rgba(255, 255, 255, 0.83) inset;
+    box-shadow: 0 2px 4px 0 rgba(72, 72, 72, 0.83), 0 10px 15px 0 rgba(126, 126, 126, 0.12), 0 -2px 6px 1px rgba(199, 199, 199, 0.55) inset, 0 2px 4px 2px rgba(255, 255, 255, 0.83) inset;
+}
+
+.search_1 {
+    width: 250px;
+    height: 30px;
+    padding-left: 15px;
+    border-radius: 6px;
+    border: none;
+    color: #0F0D0D;
+    ;
+    font-weight: 500;
+    background-color: #E2EFF7;
+    ;
+    -webkit-box-shadow: 0 -2px 2px 0 rgba(199, 199, 199, 0.55), 0 1px 1px 0 #fff, 0 2px 2px 1px #fafafa, 0 2px 4px 0 #b2b2b2 inset, 0 -1px 1px 0 #f2f2f2 inset, 0 15px 15px 0 rgba(41, 41, 41, 0.09) inset;
+    -moz-box-shadow: 0 -2px 2px 0 rgba(199, 199, 199, 0.55), 0 1px 1px 0 #fff, 0 2px 2px 1px #fafafa, 0 2px 4px 0 #b2b2b2 inset, 0 -1px 1px 0 #f2f2f2 inset, 0 15px 15px 0 rgba(41, 41, 41, 0.09) inset;
+    box-shadow: 0 -2px 2px 0 rgba(199, 199, 199, 0.55), 0 1px 1px 0 #fff, 0 2px 2px 1px #fafafa, 0 2px 4px 0 #b2b2b2 inset, 0 -1px 1px 0 #f2f2f2 inset, 0 15px 15px 0 rgba(41, 41, 41, 0.09) inset;
+}
+
+.submit_1 {
+    width: 35px;
+    height: 30px;
+    background-image: url(../images/search-btn.png);
+    background-repeat: no-repeat;
+    background-position: 17px 2px;
+    background-color: transparent;
+    -webkit-background-size: 25px 25px;
+    background-size: 25px 25px;
+    border: none;
+    cursor: pointer;
+}
+
+.search_1:focus {
+    outline: 0;
+}
+
+
+.debtDetail-text {
+    font-family: 'Permanent Marker' !important;
+}
+
 
 
 

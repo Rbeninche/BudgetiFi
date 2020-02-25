@@ -1,0 +1,149 @@
+﻿@model BudgetiFi.Models.DebtDetail
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+    <div class="bg-debtDetail">
+        <div class="container pTop content">
+            <h4 class="text-success">Add All your details here:</h4>
+
+            <hr />
+            <partial name="_StatusMessage" model=@ViewBag.StatusMessage />
+
+            <div class="col-md-7">
+                <form asp-action="Create" class="row-form">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <div class="col-auto">
+                            <label asp-for="Name" class="control-label"></label>
+                        </div>
+                        <div class="col-auto">
+                            <input asp-for="Name" class="form-control" />
+                        </div>
+
+
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-auto">
+                            <label asp-for="PaymentDate" class="control-label"></label>
+                        </div>
+                        <div class="col-auto">
+                            <input asp-for="PaymentDate" class="form-control" />
+                        </div>
+
+
+                        <span asp-validation-for="PaymentDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-auto">
+                            <label asp-for="CreditLimit" class="control-label"></label>
+                        </div>
+                        <div class="col-auto">
+                            <input asp-for="CreditLimit" class="form-control" />
+                        </div>
+
+
+                        <span asp-validation-for="CreditLimit" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-auto">
+                            <label asp-for="Balance" class="control-label"></label>
+                        </div>
+
+                        <div class="col-auto">
+                            <input asp-for="Balance" class="form-control" />
+                        </div>
+
+
+                        <span asp-validation-for="Balance" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-auto">
+                            <label asp-for="MinimumPayment" class="control-label"></label>
+                        </div>
+
+                        <div class="col-auto">
+                            <input asp-for="MinimumPayment" class="form-control" />
+                        </div>
+
+
+                        <span asp-validation-for="MinimumPayment" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+
+
+                        <div class="col-auto">
+                            <input type="hidden" value="@ViewBag.Available" readonly class="form-control" />
+                        </div>
+
+
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-auto">
+                            <label asp-for="DebtCategoryId" class="control-label"></label>
+                        </div>
+                        <div class="col-auto">
+                            <select asp-for="DebtCategoryId" id="debtCategoryId" class="form-control" asp-items="ViewBag.DebtCategoryId"></select>
+                        </div>
+
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-auto">
+                            <label asp-for="CreditorCategoryId" class="control-label"></label>
+                        </div>
+                        <div class="col-auto">
+                            <select asp-for="CreditorCategoryId" name="CreditorCategoryId" id="CreditorCategoryId" class="form-control" asp-items="ViewBag.CreditorCategoryId"></select>
+                        </div>
+
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-auto">
+                            <label asp-for="Ignore" class="control-label"></label>
+                        </div>
+                        <div class="col-auto">
+                            <input asp-for="Ignore" class="form-control" />
+                        </div>
+
+
+                        <span asp-validation-for="Ignore" class="text-danger"></span>
+                    </div>
+
+                    <partial name="_CreateAndBackButton" />
+                </form>
+            </div>
+        </div>
+    </div>
+       
+
+
+
+
+        @section Scripts {
+            <script type="text/javascript">
+        $(document).ready(function () {
+            getCreditorCategory();
+            $('#debtCategoryId').change(function () {
+                getCreditorCategory();
+            });
+        });
+        function getCreditorCategory() {
+            var url = '@Url.Content("~/")' + "Customer/CreditorCategories/GetCreditorCategory";
+            var ddlsoruce = '#debtCategoryId';
+            $.getJSON(url, { id: $(ddlsoruce).val() }, function (data) {
+                var items = '';
+                $('#CreditorCategoryId').empty();
+                $.each(data, function (i, creditorcategory) {
+                    items += "<option value='" + creditorcategory.value + "'>" + creditorcategory.text + "</option>";
+                });
+                $('#CreditorCategoryId').html(items);
+            })
+        }
+            </script>
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }

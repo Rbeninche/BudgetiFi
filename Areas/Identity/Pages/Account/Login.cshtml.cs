@@ -64,7 +64,7 @@ namespace BudgetiFi.Areas.Identity.Pages.Account
                 ModelState.AddModelError(string.Empty, ErrorMessage);
             }
 
-            returnUrl = returnUrl ?? Url.Content("~/");
+            returnUrl = returnUrl ?? Url.Content("~/Customer/DebtDetails/Profile");
 
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
@@ -76,7 +76,7 @@ namespace BudgetiFi.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
+            returnUrl = returnUrl ?? Url.Content("~/Customer/DebtDetails/Profile");
 
             if (ModelState.IsValid)
             {
@@ -138,3 +138,5 @@ namespace BudgetiFi.Areas.Identity.Pages.Account
         }
     }
 }
+
+

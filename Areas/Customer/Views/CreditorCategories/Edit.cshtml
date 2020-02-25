@@ -4,7 +4,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<div class="container pTop">
+<div class="container pTop content">
 
     <h3>Edit Creditor Category</h3>
 
@@ -53,11 +53,7 @@
 
 @section Scripts {
 
-    <script>
-        $(document).ready(function () {
-            $('#footer').empty();
-        });
-    </script>
+    
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 

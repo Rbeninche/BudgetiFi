@@ -4,14 +4,16 @@ using BudgetiFi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BudgetiFi.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200215074529_AddedAvailableCredit2DebtDetailTable")]
+    partial class AddedAvailableCredit2DebtDetailTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,9 +91,6 @@ namespace BudgetiFi.Data.Migrations
 
                     b.Property<int>("DebtCategoryId")
                         .HasColumnType("int");
-
-                    b.Property<bool>("Ignore")
-                        .HasColumnType("bit");
 
                     b.Property<double>("MinimumPayment")
                         .HasColumnType("float");
