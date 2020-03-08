@@ -103,6 +103,7 @@ namespace BudgetiFi.Areas.Customer.Controllers
             double totalDebt = _context.DebtDetails.Include(d => d.User)
                 .Where(d => d.UserId == _userId)
                 .Sum(e => e.Balance);
+            
 
             ViewBag.NumberOfMortgage = numberOfMortgage;
             ViewBag.NumberOfCreditCard = numberOfCreditCard;

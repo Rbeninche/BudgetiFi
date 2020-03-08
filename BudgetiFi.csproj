@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UserSecretsId>aspnet-BudgetiFi-6B9D4920-0E5E-4BB7-A8BE-1E58A02D3F49</UserSecretsId>
+    <ApplicationIcon>wwwroot\favicon-money.ico</ApplicationIcon>
   </PropertyGroup>
 
 
@@ -20,6 +21,11 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="wwwroot\favicon-money.ico" />
   </ItemGroup>
 
 </Project>

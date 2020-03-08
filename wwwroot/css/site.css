@@ -60,6 +60,26 @@ body {
     background-color: #85bb65;
 }
 
+
+.navbar-nav li:hover > ul.dropdown-menu {
+    display: block;
+}
+.dropdown-submenu {
+    position:relative;
+}
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top:-6px;
+}
+
+/* rotate caret on hover */
+.dropdown-menu > li > a:hover:after {
+    text-decoration: underline;
+    transform: rotate(-90deg);
+} 
+
+
 .pTop {
     padding-top: 6em;
 }
@@ -364,7 +384,7 @@ tr:hover {
     }
 }
 .stats2 {
-    background-color: #4fc8af;
+    background-color: #60a26b;
     border-radius: 4px;
     padding: 30px;
     overflow: hidden;
@@ -467,6 +487,14 @@ tr:hover {
 .debtDetail-text {
     font-family: 'Permanent Marker' !important;
 }
+
+th a {
+    color: #4fc8af;
+}
+
+    th a:hover {
+     color: #60a26b;
+    }
 
 
 

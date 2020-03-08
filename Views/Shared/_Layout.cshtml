@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="~/favicon-money.ico" type="image/x-icon">
+    <link rel="icon" href="~/favicon-money.ico" type="image/x-icon">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
 </head>
@@ -41,15 +43,23 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropDownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Manage Here!
                         </a>
-                        <div class="dropdown-menu dropdown-bg" aria-labelledby="navbarDropDownMenuLink">
-                            <a class="dropdown-item text-success font-weight-bold" asp-action="Index" asp-controller="DebtCategories" asp-area="Customer">Debt Category</a>
-                            <a class="dropdown-item text-success font-weight-bold" asp-action="Index" asp-controller="CreditorCategories" asp-area="Customer">Creditors</a>
-                            <a class="dropdown-item text-success font-weight-bold" asp-action="Index" asp-controller="DebtDetails" asp-area="Customer">Debt Details</a>
+                        <ul class="dropdown-menu dropdown-bg" aria-labelledby="navbarDropDownMenuLink">
+                            <li><a class="dropdown-item text-success font-weight-bold" asp-action="Index" asp-controller="DebtCategories" asp-area="Customer">Debt Category</a></li>
+                            <li><a class="dropdown-item text-success font-weight-bold" asp-action="Index" asp-controller="CreditorCategories" asp-area="Customer">Creditors</a></li>
+                            <li><a class="dropdown-item text-success font-weight-bold" asp-action="Index" asp-controller="DebtDetails" asp-area="Customer">Debt Details</a></li>
 
+                            <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle text-success font-weight-bold h5" href="#">
+                                Budget
+                            </a>
+                            <ul class="dropdown-menu dropdown-bg">
+                                <li><a class="dropdown-item text-success font-weight-bold" asp-action="Index" asp-controller="DebtCategories" asp-area="Customer">Budget Category</a></li>
+                                <li><a class="dropdown-item text-success font-weight-bold" asp-action="Index" asp-controller="CreditorCategories" asp-area="Customer">Budget Details</a></li>
+                                
+                            </ul>
+                            </li>
+                            </ul>
 
-                        </div>
-
-                    </li>
+</li>
 
                 }
                 @if (User.IsInRole(StaticData.AdminUser))
@@ -71,7 +81,7 @@
                 @if (User.IsInRole(StaticData.RegularUser))
                 {
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="Customer" asp-controller="DebtDetails" asp-action="Profile">OverView</a>
+                        <a class="nav-link" asp-area="Customer" asp-controller="DebtDetails" asp-action="Profile">Overview</a>
                     </li>
 
                 }
