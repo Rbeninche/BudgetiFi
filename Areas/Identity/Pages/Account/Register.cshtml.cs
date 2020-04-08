@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using BudgetiFi.Models;
 using BudgetiFi.Utility;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -65,6 +66,11 @@ namespace BudgetiFi.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Display(Name = "Household Income")]
+            [DisplayFormat(DataFormatString = "{0:C}")]
+            [Required(ErrorMessage = "Household Income is required")]
+            public double HouseholdIncome { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -79,10 +85,11 @@ namespace BudgetiFi.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser 
+                var user = new AppUser 
                 { 
                     UserName = Input.Email, 
-                    Email = Input.Email 
+                    Email = Input.Email,
+                    HouseholdIncome = Input.HouseholdIncome
                 };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);

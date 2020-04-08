@@ -194,11 +194,11 @@ namespace BudgetiFi.Areas.Customer.Controllers
             ViewBag.CreditAvailable = creditAvailable > 0 ? creditAvailable : 0;
             ViewBag.MonthlyPayment = monthlyPayment > 0 ? monthlyPayment : 0;
             ViewBag.TotalDebt = totalDebt > 0 ? totalDebt : 0;
-            ViewBag.PercentageAvailable = totalReccurringDebt > 0 ?((double)(creditAvailable / totalCreditLimit)): 0;
+            ViewBag.PercentageAvailable = totalReccurringDebt > 0 ?(creditAvailable / totalCreditLimit): 0;
           
 
 
-            int pageSize = 3;
+            int pageSize = 4;
             return View(await PaginatedList<DebtDetail>.CreateAsync(applicationDbContext.AsNoTracking().Where(d => d.UserId == _userId), pageNumber ?? 1, pageSize));
         }
 
