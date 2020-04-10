@@ -132,6 +132,7 @@ namespace BudgetiFi.Areas.Customer.Controllers
         {
             ViewData["NameSort"] = String.IsNullOrEmpty(sortOrder) ? "debt_name" : "";
             ViewData["DateSort"] = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewData["AvailableCreditSort"] = sortOrder == "AvailableCredit" ? "availableCredit_desc" : "AvailableCredit";
             ViewData["CurrentFilter"] = searchString;
             ViewData["CurrentSort"] = sortOrder;
 
@@ -164,6 +165,12 @@ namespace BudgetiFi.Areas.Customer.Controllers
                     break;
                 case "date_desc":
                     applicationDbContext = applicationDbContext.OrderByDescending(s => s.PaymentDate);
+                    break;
+                case "AvailableCredit":
+                    applicationDbContext = applicationDbContext.OrderBy(s => s.AvailableCredit);
+                    break;
+                case "availableCredit_desc":
+                    applicationDbContext = applicationDbContext.OrderByDescending(s => s.AvailableCredit);
                     break;
                 default:
                     applicationDbContext = applicationDbContext.OrderBy(s => s.Name);

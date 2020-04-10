@@ -287,6 +287,15 @@ body {
     position: relative;
 }
 
+.budget-image {
+    background: url(/images/budget.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 71px 0 65px 0;
+    position: relative;
+}
+
 .bg-debtDetail {
     background: url(/images/debtdetail.jpg);
     background-repeat: no-repeat;

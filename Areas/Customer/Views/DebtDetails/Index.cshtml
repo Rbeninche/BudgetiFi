@@ -106,7 +106,9 @@
                             Institution Name
                         </th>
                         <th>
-                            Avalaible Credit
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["AvailableCreditSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]" style="text-decoration:none">
+                                Available Credit
+                            </a>
                         </th>
                         <th></th>
                     </tr>

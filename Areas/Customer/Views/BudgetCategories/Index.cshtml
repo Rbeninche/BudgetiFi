@@ -1,0 +1,75 @@
+﻿@model IEnumerable<BudgetCategory>
+
+@{
+    ViewData["Title"] = "Budget Category";
+}
+
+
+
+<div class="container pTop">
+
+    <div class="row mb-2">
+        <div class="col-6">
+            <h2 class="text-success">Here's a list of your budget category</h2>
+        </div>
+
+        <div class="col-6 text-right">
+            <partial name="_CreateButtonPartial" />
+        </div>
+
+
+    </div>
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table">
+            <thead class="text-head">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="text-column">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+
+                        <td>
+                            <partial name="_tableButtonPartial" model="item.Id" />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    }
+    else
+    {
+        <blockquote cite="https://buildinganest.co/motivational-start-budget-quotes/">
+            <p>The best way to stick to your budget is to start one</p>
+
+        </blockquote>
+    }
+
+
+</div>
+
+
+
+@section Scripts {
+
+    <script>
+        $(document).ready(function () {
+
+             $('body').css("background-color", "#393945")
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

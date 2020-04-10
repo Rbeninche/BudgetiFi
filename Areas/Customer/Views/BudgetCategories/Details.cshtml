@@ -1,19 +1,19 @@
-﻿@model DebtCategory
+﻿@model BudgetCategory
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Details";
 }
 
 <div class="container pTop content">
 
 
-    <h3>Are you sure you want to delete this?</h3>
+    <h3>Budget Category Details</h3>
     <div>
         <hr />
 
         <div class="col-md-7">
-            <form asp-action="Delete" class="row-form">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <form asp-action="Details" class="row-form">
+
                 <input type="hidden" asp-for="Id" />
                 <div class="form-group">
                     <div class="col-auto">
@@ -22,10 +22,10 @@
                     <div class="col-auto">
                         <input asp-for="Name" readonly class="form-control" />
                     </div>
-                    <span asp-validation-for="Name" class="text-danger"></span>
+
                 </div>
 
-                <partial name="_DeleteAndBackButton" model="Model.Id" />
+                <partial name="_DetailsAndBackButton" model="Model.Id" />
 
             </form>
         </div>
@@ -35,9 +35,7 @@
 
 @section Scripts {
 
-  
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-
-
 
