@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using BudgetiFi.Services;
+using System.Globalization;
 
 namespace BudgetiFi
 {
@@ -51,11 +52,13 @@ namespace BudgetiFi
         {
             if (env.IsDevelopment())
             {
+                CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
             else
             {
+                CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
